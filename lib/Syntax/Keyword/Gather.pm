@@ -54,7 +54,7 @@ package Syntax::Keyword::Gather::MagicArrayRef;
 use overload
    'bool'   => sub { @{$_[0]} > 0      },
    '0+'     => sub { @{$_[0]} + 0      },
-   '""'     => sub { join q{}, @{$_[0]} },
+   '""'     => sub { join q{}, map { defined($_) ? $_ : '' } @{$_[0]} },
    fallback => 1;
 
 1;
